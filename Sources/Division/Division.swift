@@ -2,7 +2,7 @@ public import Addition
 public import Polarity
 public import Subtraction
 
-/// Integer division with explicit validation and rounding policies.
+
 public enum Division {}
 
 extension Division {
@@ -13,7 +13,7 @@ extension Division {
         case inexact
     }
 
-    /// Divides toward zero, rejecting a zero divisor and an unrepresentable quotient.
+
     @inlinable
     public static func quotient<Value: FixedWidthInteger>(
         _ dividend: Value, by divisor: Value
@@ -24,7 +24,7 @@ extension Division {
         return (quotient.partialValue, dividend % divisor)
     }
 
-    /// Divides only when the result is an integer.
+
     @inlinable
     public static func exact<Value: FixedWidthInteger>(
         _ dividend: Value, by divisor: Value
@@ -34,7 +34,7 @@ extension Division {
         return result.quotient
     }
 
-    /// Divides by a positive divisor with a nonnegative remainder.
+
     @inlinable
     public static func euclidean<Value: FixedWidthInteger & SignedInteger>(
         _ dividend: Value, by divisor: Value
@@ -54,10 +54,10 @@ extension Division {
 }
 
 extension Division.Signed {
-    /// Divides a signed magnitude by a positive magnitude using Euclidean rounding.
-    ///
-    /// The remainder is nonnegative and less than the divisor. Zero quotient
-    /// has positive polarity. The full unsigned range remains available.
+
+
+
+
     @inlinable
     public static func euclidean<Storage: FixedWidthInteger & UnsignedInteger>(
         magnitude: Storage, polarity: Polarity, by divisor: Storage

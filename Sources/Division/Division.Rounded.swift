@@ -1,9 +1,9 @@
 public import Rounding
 
 extension Division {
-    /// Divides signed machine integers with one shared rounding policy.
-    /// The remainder satisfies dividend = quotient * divisor + remainder in exact arithmetic.
-    /// No intermediate negation of a signed minimum, doubled remainder, or quotient product is used.
+
+
+
     public static func rounded<Value: FixedWidthInteger & SignedInteger>(
         _ dividend: Value, by divisor: Value, rounding: Rounding = .down
     ) throws(Error) -> (quotient: Value, remainder: Value) {
