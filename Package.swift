@@ -6,8 +6,8 @@ let package = Package(
     platforms: [.macOS(.v27), .iOS(.v27), .tvOS(.v27), .watchOS(.v27), .visionOS(.v27)],
     products: [
         .library(name: "Division", targets: ["Division"]),
-        .library(name: "Division Standard Library Integration", targets: ["Division Standard Library Integration"]),
-        .library(name: "Division Foundation Library Integration", targets: ["Division Foundation Library Integration"]),
+
+        .library(name: "Division Foundation Integration", targets: ["Division Foundation Integration"]),
         .library(name: "Division Test Support", targets: ["Division Test Support"]),
     ],
     dependencies: [
@@ -25,20 +25,13 @@ let package = Package(
             ],
             path: "Sources/Division"
         ),
+        
         .target(
-            name: "Division Standard Library Integration",
+            name: "Division Foundation Integration",
             dependencies: [
                 .target(name: "Division"),
             ],
-            path: "Sources/Division Standard Library Integration"
-        ),
-        .target(
-            name: "Division Foundation Library Integration",
-            dependencies: [
-                .target(name: "Division"),
-                .target(name: "Division Standard Library Integration"),
-            ],
-            path: "Sources/Division Foundation Library Integration"
+            path: "Sources/Division Foundation Integration"
         ),
         .target(
             name: "Division Test Support",
@@ -55,8 +48,7 @@ let package = Package(
                 .product(name: "Subtraction", package: "swift-subtraction"),
                 .product(name: "Polarity", package: "swift-polarity"),
                 .target(name: "Division Test Support"),
-                .target(name: "Division Standard Library Integration"),
-                .target(name: "Division Foundation Library Integration"),
+                .target(name: "Division Foundation Integration"),
             ],
             path: "Tests/Division Tests"
         ),
