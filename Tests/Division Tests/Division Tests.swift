@@ -3,9 +3,9 @@ import Polarity
 import Testing
 
 @Suite
-struct `Division Tests` {}
+struct `Integer division preserves quotient and remainder invariants` {}
 
-extension `Division Tests` {
+extension `Integer division preserves quotient and remainder invariants` {
     @Test
     func `Int8 Euclidean division agrees with a wider integer oracle`() throws {
         for dividend in Int16(-128)...127 {

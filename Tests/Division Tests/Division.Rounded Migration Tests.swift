@@ -4,21 +4,21 @@ import Division
 
 @Suite
 struct `Integer division applies rounding policies` {
-    @Suite struct `Unit tests` {}
-    @Suite struct `Edge cases` {}
-    @Suite struct `Integration tests` {}
-    @Suite(.serialized) struct `Performance tests` {}
+    @Suite struct `Division preserves quotient remainder and rounding relationships` {}
+    @Suite struct `Negative operands follow the requested rounding direction` {}
+    @Suite struct `No integration cases are defined` {}
+    @Suite(.serialized) struct `No performance cases are defined` {}
 }
 
-extension `Integer division applies rounding policies`.`Unit tests` {
+extension `Integer division applies rounding policies`.`Division preserves quotient remainder and rounding relationships` {
     @Test
-    func `floor division of positive values`() throws {
+    func `Floor division rounds positive quotients down`() throws {
         #expect(try Division.rounded(17, by: 5).quotient == 3)
         #expect(try Division.rounded(15, by: 5).quotient == 3)
     }
 
     @Test
-    func `ceiling division of positive values`() throws {
+    func `Ceiling division rounds positive quotients up`() throws {
         #expect(try Division.rounded(17, by: 5, rounding: .up).quotient == 4)
         #expect(try Division.rounded(15, by: 5, rounding: .up).quotient == 3)
     }
@@ -45,7 +45,7 @@ extension `Integer division applies rounding policies`.`Unit tests` {
     }
 }
 
-extension `Integer division applies rounding policies`.`Edge cases` {
+extension `Integer division applies rounding policies`.`Negative operands follow the requested rounding direction` {
     @Test
     func `floor division rounds toward negative infinity`() throws {
         #expect(try Division.rounded((-17), by: 5).quotient == -4)
@@ -59,7 +59,7 @@ extension `Integer division applies rounding policies`.`Edge cases` {
     }
 
     @Test
-    func `division parts with negative dividend`() throws {
+    func `Negative dividends produce a nonnegative Euclidean remainder`() throws {
         let (q, r) = try Division.rounded((-17), by: 5)
         #expect(q == -4)
         #expect(r == 3)
