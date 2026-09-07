@@ -2,15 +2,15 @@ import Testing
 
 import Division
 
-@Suite("Division.Rounded")
-struct NumericIntegerDivisionTests {
-    @Suite struct Unit {}
-    @Suite struct EdgeCase {}
-    @Suite struct Integration {}
-    @Suite(.serialized) struct Performance {}
+@Suite
+struct `Integer division applies rounding policies` {
+    @Suite struct `Unit tests` {}
+    @Suite struct `Edge cases` {}
+    @Suite struct `Integration tests` {}
+    @Suite(.serialized) struct `Performance tests` {}
 }
 
-extension NumericIntegerDivisionTests.Unit {
+extension `Integer division applies rounding policies`.`Unit tests` {
     @Test
     func `floor division of positive values`() throws {
         #expect(try Division.rounded(17, by: 5).quotient == 3)
@@ -45,7 +45,7 @@ extension NumericIntegerDivisionTests.Unit {
     }
 }
 
-extension NumericIntegerDivisionTests.EdgeCase {
+extension `Integer division applies rounding policies`.`Edge cases` {
     @Test
     func `floor division rounds toward negative infinity`() throws {
         #expect(try Division.rounded((-17), by: 5).quotient == -4)

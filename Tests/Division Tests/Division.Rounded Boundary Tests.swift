@@ -1,8 +1,8 @@
 import Division
 import Testing
 
-@Suite struct RoundedDivisionBoundaryTests {
-    @Test func signedMinimaAndExactness() throws {
+@Suite struct `Rounded division covers signed boundaries` {
+    @Test func `Division handles signed minima and rejects inexact results`() throws {
         #expect(try Division.rounded(-1, by: 2, rounding: .away).quotient == -1)
         #expect(try Division.rounded(8, by: 3, rounding: .odd).quotient == 3)
         #expect(throws: Division.Error.inexact) { try Division.rounded(5, by: 2, rounding: .exact) }
@@ -14,7 +14,7 @@ import Testing
         #expect(throws: Division.Error.zero) { try Division.rounded(Int8(1), by: 0) }
     }
 
-    @Test func everySignedBytePairAgreesWithWiderOracle() throws {
+    @Test func `Every signed byte pair agrees with a wider division oracle`() throws {
         let rules: [(Rounding, FloatingPointRoundingRule)] = [
             (.down, .down), (.up, .up), (.zero, .towardZero), (.away, .awayFromZero),
             (.even, .toNearestOrEven), (.nearest(.away), .toNearestOrAwayFromZero),
