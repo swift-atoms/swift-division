@@ -20,3 +20,5 @@ let result = try Division.euclidean(Int128(-61), by: 60)
 
 This operation defines a rounding policy and representation arithmetic. It does
 not impose quantity domains; Ratio and other value domains own those bindings.
+
+`rounded(_:by:rounding:)` supports signed fixed-width operands and the shared Rounding policy. It returns a quotient and residual satisfying the division identity in exact arithmetic. It computes with unsigned remainder magnitudes and adjusts the residual directly, avoiding signed-minimum negation and overflowing intermediate products. Exact mode throws `.inexact`; odd mode jams inexact results to an odd integer. Zero and unrepresentable quotients remain explicit failures.

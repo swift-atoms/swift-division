@@ -11,6 +11,7 @@ let package = Package(
         .library(name: "Division Test Support", targets: ["Division Test Support"]),
     ],
     dependencies: [
+        .package(url: "https://github.com/swift-atoms/swift-rounding.git", branch: "main"),
         .package(url: "https://github.com/swift-atoms/swift-addition.git", branch: "main"),
         .package(url: "https://github.com/swift-atoms/swift-subtraction.git", branch: "main"),
         .package(url: "https://github.com/swift-atoms/swift-polarity.git", branch: "main"),
@@ -19,6 +20,7 @@ let package = Package(
         .target(
             name: "Division",
             dependencies: [
+                .product(name: "Rounding", package: "swift-rounding"),
                 .product(name: "Addition", package: "swift-addition"),
                 .product(name: "Subtraction", package: "swift-subtraction"),
                 .product(name: "Polarity", package: "swift-polarity"),
