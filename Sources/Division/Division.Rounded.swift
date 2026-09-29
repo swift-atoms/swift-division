@@ -11,7 +11,7 @@ extension Division {
         let remainder = result.remainder.magnitude
         guard remainder != 0 else { return result }
         let complement = divisor.magnitude - remainder
-        let comparison: Comparison = remainder < complement ? .less : (remainder > complement ? .greater : .equal)
+        let comparison: Order.Comparison = remainder < complement ? .less : (remainder > complement ? .greater : .equal)
         let negative = (dividend < 0) != (divisor < 0)
         let increment: Bool
         do {
