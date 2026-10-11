@@ -6,7 +6,7 @@ public import Subtraction
 public enum Division {}
 
 extension Division {
-    public enum Error: Swift.Error, Hashable, Sendable {
+    public enum Error: Swift::Error, Hashable, Sendable {
         case zero
         case negative
         case overflow

@@ -50,7 +50,6 @@ let package = Package(
                 .product(name: "Subtraction", package: "swift-subtraction"),
                 .product(name: "Polarity", package: "swift-polarity"),
                 .target(name: "Division Test Support"),
-                .target(name: "Division Foundation Integration"),
             ],
             path: "Tests/Division Tests"
         ),
@@ -58,7 +57,7 @@ let package = Package(
     swiftLanguageModes: [.v6]
 )
 
-for target in package.targets where ![.system, .binary, .plugin].contains(target.type) {
+for target in package.targets where ![.system, .binary, .plugin, .macro].contains(target.type) {
     target.swiftSettings = (target.swiftSettings ?? []) + [
         .strictMemorySafety(),
         .enableUpcomingFeature("ExistentialAny"),
