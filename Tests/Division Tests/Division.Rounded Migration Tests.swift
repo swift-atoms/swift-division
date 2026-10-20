@@ -1,6 +1,5 @@
-import Testing
-
 import Division
+import Testing
 
 @Suite
 struct `Integer division applies rounding policies` {

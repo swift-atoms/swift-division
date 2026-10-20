@@ -2,10 +2,10 @@ public import Rounding
 
 extension Division {
 
-
-
     public static func rounded<Value: FixedWidthInteger & SignedInteger>(
-        _ dividend: Value, by divisor: Value, rounding: Rounding = .down
+        _ dividend: Value,
+        by divisor: Value,
+        rounding: Rounding = .down
     ) throws(Error) -> (quotient: Value, remainder: Value) {
         let result = try quotient(dividend, by: divisor)
         let remainder = result.remainder.magnitude
@@ -22,10 +22,12 @@ extension Division {
             )
         } catch { throw .inexact }
         guard increment else { return result }
-        let roundedQuotient = negative
+        let roundedQuotient =
+            negative
             ? result.quotient.subtractingReportingOverflow(1)
             : result.quotient.addingReportingOverflow(1)
-        let residual = negative
+        let residual =
+            negative
             ? result.remainder.addingReportingOverflow(divisor)
             : result.remainder.subtractingReportingOverflow(divisor)
         guard !roundedQuotient.overflow, !residual.overflow else { throw .overflow }

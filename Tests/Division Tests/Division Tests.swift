@@ -28,7 +28,9 @@ extension `Integer division preserves quotient and remainder invariants` {
                     let base = Int16(divisor)
                     let expected = dividend >= 0 ? dividend / base : (dividend - base + 1) / base
                     let result = try Division.Signed.euclidean(
-                        magnitude: UInt8(magnitude), polarity: polarity, by: UInt8(divisor)
+                        magnitude: UInt8(magnitude),
+                        polarity: polarity,
+                        by: UInt8(divisor)
                     )
                     #expect(result.polarity == (expected < 0 ? .negative : .positive))
                     #expect(UInt16(result.quotient) == expected.magnitude)

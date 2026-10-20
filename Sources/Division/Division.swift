@@ -2,7 +2,6 @@ public import Addition
 public import Polarity
 public import Subtraction
 
-
 public enum Division {}
 
 extension Division {
@@ -13,10 +12,10 @@ extension Division {
         case inexact
     }
 
-
     @inlinable
     public static func quotient<Value: FixedWidthInteger>(
-        _ dividend: Value, by divisor: Value
+        _ dividend: Value,
+        by divisor: Value
     ) throws(Error) -> (quotient: Value, remainder: Value) {
         guard divisor != .zero else { throw .zero }
         let quotient = dividend.dividedReportingOverflow(by: divisor)
@@ -24,20 +23,20 @@ extension Division {
         return (quotient.partialValue, dividend % divisor)
     }
 
-
     @inlinable
     public static func exact<Value: FixedWidthInteger>(
-        _ dividend: Value, by divisor: Value
+        _ dividend: Value,
+        by divisor: Value
     ) throws(Error) -> Value {
         let result = try quotient(dividend, by: divisor)
         guard result.remainder == .zero else { throw .inexact }
         return result.quotient
     }
 
-
     @inlinable
     public static func euclidean<Value: FixedWidthInteger & SignedInteger>(
-        _ dividend: Value, by divisor: Value
+        _ dividend: Value,
+        by divisor: Value
     ) throws(Error) -> (quotient: Value, remainder: Value) {
         guard divisor >= .zero else { throw .negative }
         let result = try quotient(dividend, by: divisor)
@@ -55,12 +54,11 @@ extension Division {
 
 extension Division.Signed {
 
-
-
-
     @inlinable
     public static func euclidean<Storage: FixedWidthInteger & UnsignedInteger>(
-        magnitude: Storage, polarity: Polarity, by divisor: Storage
+        magnitude: Storage,
+        polarity: Polarity,
+        by divisor: Storage
     ) throws(Division.Error) -> (polarity: Polarity, quotient: Storage, remainder: Storage) {
         let result = try Division.quotient(magnitude, by: divisor)
         guard polarity == .negative else {
